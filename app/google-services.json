@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "940767094472",
+    "firebase_url": "https://phoenix-26927-default-rtdb.firebaseio.com",
+    "project_id": "phoenix-26927",
+    "storage_bucket": "phoenix-26927.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940767094472:android:eafca5514033b75cb367fd",
+        "android_client_info": {
+          "package_name": "com.example.phoenix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq7qpgQwAMMx9xv1MAl_JL05wRX53vRZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940767094472:android:ee9d1f31114eee6eb367fd",
+        "android_client_info": {
+          "package_name": "com.example.remotecontrol"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq7qpgQwAMMx9xv1MAl_JL05wRX53vRZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

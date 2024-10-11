@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Remote Control</string>
+    <string name="app_about">This app is developed and managed by phoenix club. All the 4 arrow buttons have their usual meanings and they work only when touched on the button. The button at the middle serves to stop if in case nothing works. The 2 buttons below them are used for clockwise and anti-clockwise rotation of the car. And the 5 buttons below are the speed controls, the 5th speed is disabled in order to prevent damage to the components. The string requests received through the NodeMCU can be changed for the app through the settings panel on the homepage. </string>
+    <string name="title_activity_leader_board">LeaderBoardActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+</resources>
