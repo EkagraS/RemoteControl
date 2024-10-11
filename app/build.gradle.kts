@@ -56,4 +56,6 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.volley)
     implementation(libs.retrofit)
+    implementation (libs.firebase.analytics.ktx)
+
 }

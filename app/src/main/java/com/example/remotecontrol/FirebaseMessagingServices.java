@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
@@ -17,6 +18,16 @@ public class FirebaseMessagingServices extends com.google.firebase.messaging.Fir
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
+        Log.d("FirebaseMessaging1", "Message received: " + remoteMessage.getData());
+
+        if (remoteMessage.getData().size() > 0) {
+            String clickAction = remoteMessage.getData().get("click_action");
+
+            if ("OPEN_ANNOUNCEMENT_ACTIVITY".equals(clickAction)) {
+                Log.d("FirebaseMessaging2", "Opening AnnouncementActivity");
+                // Your existing code...
+            }
+        }
         // Check if the notification contains data
         if (remoteMessage.getData().size() > 0) {
             String clickAction = remoteMessage.getData().get("click_action");
