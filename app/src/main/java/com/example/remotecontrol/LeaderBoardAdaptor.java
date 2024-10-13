@@ -34,13 +34,17 @@ public class LeaderBoardAdaptor extends RecyclerView.Adapter<LeaderBoardAdaptor.
         holder.MentorName.setText(data.getMentorName());
         holder.LeaderName.setText(data.getLeaderName());
         holder.TimeTaken.setText(data.getTimeTaken());
+        holder.position_txt.setText((position+1)+"");
 
         if(position==0){
             holder.cv.setCardBackgroundColor(Color.parseColor("#F2BF20"));// Gold color
+            holder.position_txt.setBackgroundColor(Color.parseColor("#F2BF20"));// Gold color
         } else if (position==1) {
             holder.cv.setCardBackgroundColor(Color.parseColor("#C0C0C0"));// Silver color
+            holder.position_txt.setBackgroundColor(Color.parseColor("#C0C0C0"));// Silver color
         } else if (position==2) {
             holder.cv.setCardBackgroundColor(Color.parseColor("#CD7F32"));// Bronze color
+            holder.position_txt.setBackgroundColor(Color.parseColor("#CD7F32"));// Bronze color
         }
     }
 
@@ -51,7 +55,7 @@ public class LeaderBoardAdaptor extends RecyclerView.Adapter<LeaderBoardAdaptor.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView TeamName, MentorName, LeaderName, TimeTaken;
+        TextView TeamName, MentorName, LeaderName, TimeTaken, position_txt;
         CardView cv;
 
         public ViewHolder(@NonNull View itemView) {
@@ -61,6 +65,7 @@ public class LeaderBoardAdaptor extends RecyclerView.Adapter<LeaderBoardAdaptor.
             MentorName = itemView.findViewById(R.id.textView2);
             LeaderName = itemView.findViewById(R.id.textView3);
             TimeTaken = itemView.findViewById(R.id.textView4);
+            position_txt = itemView.findViewById(R.id.leaderboard_number);
             cv=itemView.findViewById(R.id.cv);
         }
     }

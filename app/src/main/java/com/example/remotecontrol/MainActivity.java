@@ -1,7 +1,7 @@
 package com.example.remotecontrol;
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
@@ -11,29 +11,24 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView top, bottom, left, right, clockwise, anticlockwise, stop;
-    Button speed1,speed2,speed3,speed4,speed5;
+    Button speed1, speed2, speed3, speed4, speed5;
     private CarApiService service;
 
     private OkHttpClient client = new OkHttpClient.Builder()
@@ -81,55 +76,76 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        top=findViewById(R.id.imageButtonForward);
-        bottom=findViewById(R.id.imageButtonDown);
-        left=findViewById(R.id.imageButtonLeft);
-        right=findViewById(R.id.imageButtonRight);
-        stop=findViewById(R.id.stopButton);
-        clockwise=findViewById(R.id.ClockWiseButton);
-        anticlockwise=findViewById(R.id.antiClockWiseButton);
-        speed1=findViewById(R.id.speed1);
-        speed2=findViewById(R.id.speed2);
-        speed3=findViewById(R.id.speed3);
-        speed4=findViewById(R.id.speed4);
-        speed5=findViewById(R.id.speed5);
+        top = findViewById(R.id.imageButtonForward);
+        bottom = findViewById(R.id.imageButtonDown);
+        left = findViewById(R.id.imageButtonLeft);
+        right = findViewById(R.id.imageButtonRight);
+        stop = findViewById(R.id.stopButton);
+        clockwise = findViewById(R.id.ClockWiseButton);
+        anticlockwise = findViewById(R.id.antiClockWiseButton);
+        speed1 = findViewById(R.id.speed1);
+        speed2 = findViewById(R.id.speed2);
+        speed3 = findViewById(R.id.speed3);
+        speed4 = findViewById(R.id.speed4);
+        speed5 = findViewById(R.id.speed5);
+
+
+        SharedPreferences editor = getSharedPreferences("Data", MODE_PRIVATE);
+        String topText = editor.getString("top", "");
+        String bottomText = editor.getString("bottom", "");
+        String leftText = editor.getString("left", "");
+        String rightText = editor.getString("right", "");
+        String stopText = editor.getString("stop", "");
+        String clockText = editor.getString("clock", "");
+        String AclockText = editor.getString("anticlock", "");
+        String s1Text = editor.getString("s1", "");
+        String s2Text = editor.getString("s2", "");
+        String s3Text = editor.getString("s3", "");
+        String s4Text = editor.getString("s4", "");
+        String s5Text = editor.getString("s5", "");
 
 
         speed1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSpeedRequest("speed1");
+                sendMoveRequest(s1Text);
             }
         });
 
         speed2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSpeedRequest("speed2");
+                sendMoveRequest(s2Text);
             }
         });
 
         speed3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSpeedRequest("speed3");
+                sendMoveRequest(s3Text);
             }
         });
 
         speed4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSpeedRequest("speed4");
+                sendMoveRequest(s4Text);
             }
         });
 
         speed5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSpeedRequest("speed5");
+                sendMoveRequest(s5Text);
             }
         });
 
+        findViewById(R.id.main_back_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         left.setOnTouchListener(new View.OnTouchListener() {
@@ -137,10 +153,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        sendMoveRequest("yellow");
+                        left.setAlpha(0.6f);
+                        sendMoveRequest(leftText);
                         return true;
                     case MotionEvent.ACTION_UP:
-                        sendMoveRequest("stop");
+                        sendMoveRequest(stopText);
+                        left.setAlpha(1.0f);
                         return false;
                 }
                 return false;
@@ -152,10 +170,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        sendMoveRequest("green");
+                        right.setAlpha(0.6f);
+                        sendMoveRequest(rightText);
                         return true;
                     case MotionEvent.ACTION_UP:
-                        sendMoveRequest("stop");
+                        right.setAlpha(1.0f);
+                        sendMoveRequest(stopText);
                         return false;
                 }
                 return false;
@@ -166,10 +186,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        sendMoveRequest("red");
+                        top.setAlpha(0.6f);
+                        sendMoveRequest(topText);
                         return true;
                     case MotionEvent.ACTION_UP:
-                        sendMoveRequest("stop");
+                        top.setAlpha(1.0f);
+                        sendMoveRequest(stopText);
                         return false;
                 }
                 return false;
@@ -182,26 +204,62 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        sendMoveRequest("white");  // Send "white" when button is pressed
+                        bottom.setAlpha(0.6f);
+                        sendMoveRequest(bottomText);  // Send "white" when button is pressed
                         return true;
                     case MotionEvent.ACTION_UP:
-                        sendMoveRequest("stop");   // Send "stop" when button is released
+                        bottom.setAlpha(1.0f);
+                        sendMoveRequest(stopText);   // Send "stop" when button is released
                         return true;
                 }
                 return false;
             }
         });
 
+
+
+        clockwise.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        clockwise.setAlpha(0.6f);
+                        sendMoveRequest(clockText);  // Send "white" when button is pressed
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        clockwise.setAlpha(1.0f);
+                        sendMoveRequest(stopText);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        anticlockwise.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        anticlockwise.setAlpha(0.6f);
+                        sendMoveRequest(AclockText);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        anticlockwise.setAlpha(1.0f);
+                        sendMoveRequest(stopText);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+
+
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendMoveRequest("stop");
+                sendMoveRequest(stopText);
             }
         });
-    }
-
-    private void sendSpeedRequest(String spd) {
-
     }
 
 
@@ -246,5 +304,6 @@ public class MainActivity extends AppCompatActivity {
         @GET("/?")
         Call<Void> move(@Query("dir") String direction);
     }
+
 
 }

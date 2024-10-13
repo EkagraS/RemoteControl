@@ -4,6 +4,13 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+<!--    Theme.Material3.DayNight.NoActionBar-->
+<!--    Theme.AppCompat.Light.NoActionBar-->
+    <style name="white_underline" parent="Base.Theme.RemoteControl">
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
 
     <style name="Theme.RemoteControl" parent="Base.Theme.RemoteControl" />
 </resources>

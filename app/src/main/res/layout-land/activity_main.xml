@@ -5,56 +5,109 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#1A1918"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteX="25dp"
     tools:layout_editor_absoluteY="0dp">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/main_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Control Text -->
+        <TextView
+            android:id="@+id/control_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/agbalumo"
+            android:text="CONTROL"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/middle_guidline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:alpha="0.3"
+        android:src="@drawable/phoenix_logo"
+        app:layout_constraintBottom_toBottomOf="@id/stopButton"
+        app:layout_constraintEnd_toEndOf="@id/stopButton"
+        app:layout_constraintStart_toStartOf="@id/stopButton"
+        app:layout_constraintTop_toTopOf="@id/stopButton" />
+
+
     <ImageView
         android:id="@+id/imageButtonForward"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="30dp"
         android:backgroundTint="@color/white"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/top" />
+        android:src="@drawable/arrow_forward_img"
+        app:layout_constraintBottom_toTopOf="@id/stopButton"
+        app:layout_constraintEnd_toEndOf="@id/stopButton"
+        app:layout_constraintStart_toStartOf="@id/stopButton" />
 
     <ImageView
         android:id="@+id/imageButtonDown"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stopButton"
-        app:srcCompat="@drawable/bottom" />
+        app:layout_constraintEnd_toEndOf="@id/stopButton"
+        app:layout_constraintStart_toStartOf="@id/stopButton"
+        app:layout_constraintTop_toBottomOf="@id/stopButton"
+        app:srcCompat="@drawable/arrow_down_img" />
 
     <ImageView
         android:id="@+id/imageButtonLeft"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="30dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="30dp"
         android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButtonDown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButtonForward"
-        app:layout_constraintVertical_bias="0.5"
-        app:srcCompat="@drawable/left" />
+        app:layout_constraintBottom_toBottomOf="@id/stopButton"
+        app:layout_constraintEnd_toStartOf="@id/stopButton"
+        app:layout_constraintTop_toTopOf="@id/stopButton"
+        app:srcCompat="@drawable/arrow_left_img" />
 
     <ImageView
         android:id="@+id/imageButtonRight"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="30dp"
         android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButtonDown"
-        app:layout_constraintStart_toEndOf="@+id/stopButton"
-        app:layout_constraintTop_toTopOf="@+id/imageButtonForward"
-        app:srcCompat="@drawable/right" />
+        app:layout_constraintBottom_toBottomOf="@id/stopButton"
+        app:layout_constraintStart_toEndOf="@id/stopButton"
+        app:layout_constraintTop_toTopOf="@id/stopButton"
+        app:srcCompat="@drawable/arrow_right_img" />
 
 
     <ImageView
@@ -63,119 +116,125 @@
         android:layout_height="70dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonLeft"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonForward"
-        app:srcCompat="@drawable/stop" />
-
-    <ImageView
-        android:id="@+id/antiClockWiseButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="-40dp"
-        android:layout_marginTop="110dp"
-        app:layout_constraintStart_toStartOf="@+id/textView44"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/middle_guidline"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/anti_clockwise" />
+        app:srcCompat="@drawable/stopcircle_img" />
 
-    <ImageView
-        android:id="@+id/ClockWiseButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="-40dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView44"
+    <LinearLayout
+        android:layout_marginTop="70dp"
+        app:layout_constraintBottom_toTopOf="@id/buttons_layout"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/clockwise" />
-
-    <Button
-        android:id="@+id/speed4"
-        android:layout_width="70dp"
+        android:id="@+id/main_clock_card"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@id/middle_guidline"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/antiClockWiseButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="40dp"
+            app:srcCompat="@drawable/rotate_ccw_img" />
+
+        <ImageView
+            android:id="@+id/ClockWiseButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="40dp"
+            app:srcCompat="@drawable/rotate_cw_img" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttons_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="-20dp"
         android:backgroundTint="@color/white"
-        android:text="4"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/middle_guidline"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/speed5" />
-
-    <Button
-        android:id="@+id/speed3"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/white"
-        android:text="3"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/speed4" />
-
-    <Button
-        android:id="@+id/speed1"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/white"
-        android:text="1"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/speed2" />
-
-    <Button
-        android:id="@+id/speed2"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/white"
-        android:text="2"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/speed3" />
-
-    <Button
-        android:id="@+id/speed5"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/white"
-        android:text="5"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/textView44"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:fontFamily="@font/albert_sans"
-        android:text="Speed Controls"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/speed5"
-        app:layout_constraintEnd_toEndOf="@+id/speed5"
-        app:layout_constraintStart_toStartOf="@+id/speed1" />
+        android:layout_marginBottom="5dp">
 
 
-    <TextView
-        android:id="@+id/spin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="SPIN"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/ClockWiseButton"
-        app:layout_constraintStart_toStartOf="@+id/antiClockWiseButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/speed1"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="#76FFFFFF"
+            android:text="1"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:cornerRadius="10dp"
+            app:strokeColor="@color/black" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/speed2"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="#76FFFFFF"
+            android:text="2"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:cornerRadius="10dp"
+            app:strokeColor="@color/black" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/speed3"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="#76FFFFFF"
+            android:text="3"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:cornerRadius="10dp"
+            app:strokeColor="@color/black" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/speed4"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="#76FFFFFF"
+            android:text="4"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:cornerRadius="10dp"
+            app:strokeColor="@color/black" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/speed5"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="#76FFFFFF"
+            android:text="5"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:cornerRadius="10dp"
+            app:strokeColor="@color/black" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

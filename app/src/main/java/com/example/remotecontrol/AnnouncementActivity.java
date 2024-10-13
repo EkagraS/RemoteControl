@@ -3,6 +3,8 @@ package com.example.remotecontrol;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -29,6 +31,7 @@ public class AnnouncementActivity extends AppCompatActivity {
     AnnouncementAdaptor AnnouncementAdaptor;
     List<AnnouncementData> announcementDataList;
     DatabaseReference databaseReference;
+    ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class AnnouncementActivity extends AppCompatActivity {
 
 
         recyclerView=findViewById(R.id.recyclerView);
+        pb = findViewById(R.id.anouncement_progressbar);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         announcementDataList=new ArrayList<>();
@@ -45,7 +49,15 @@ public class AnnouncementActivity extends AppCompatActivity {
 
         databaseReference= FirebaseDatabase.getInstance().getReference("Announcements");
 
+        pb.setVisibility(View.VISIBLE);
         fetchTeamsFromFirebase();
+
+        findViewById(R.id.anouncement_back_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
@@ -61,6 +73,7 @@ public class AnnouncementActivity extends AppCompatActivity {
                         Log.d("Firebase Data", "Fetched Data: " + data.toString());
                     }
                 }
+                pb.setVisibility(View.GONE);
                 AnnouncementAdaptor.notifyDataSetChanged();
             }
 

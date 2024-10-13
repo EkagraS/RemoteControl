@@ -56,6 +56,11 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.volley)
     implementation(libs.retrofit)
-    implementation (libs.firebase.analytics.ktx)
+    implementation(libs.firebase.analytics.ktx)
+
+
+    // Lottie Animation Library
+    implementation(libs.lottie)
+
 
 }

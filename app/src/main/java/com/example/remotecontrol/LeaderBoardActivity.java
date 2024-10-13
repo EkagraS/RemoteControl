@@ -2,6 +2,8 @@ package com.example.remotecontrol;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -28,10 +30,14 @@ public class LeaderBoardActivity extends AppCompatActivity {
     List<LeaderBoardData> leaderBoardDataList;
 
     DatabaseReference databaseReference;
+    ProgressBar pb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
+
+        pb = findViewById(R.id.leaderboard_progressbar);
 
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -43,7 +49,16 @@ public class LeaderBoardActivity extends AppCompatActivity {
         databaseReference= FirebaseDatabase.getInstance().getReference("Leaderboard");
         DatabaseReference ref1=databaseReference.child("Team1");
         Log.d("Team 1", ref1.getKey().toString());
+        pb.setVisibility(View.VISIBLE);
         fetchTeamsFromFirebase();
+
+
+        findViewById(R.id.leaderboard_back_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
@@ -59,6 +74,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
                         leaderBoardDataList.add(data);
                     }
                 }
+                pb.setVisibility(View.GONE);
                 leaderBoardAdaptor.notifyDataSetChanged();
             }
 
